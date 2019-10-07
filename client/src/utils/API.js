@@ -1,7 +1,7 @@
 import axios from "axios";
 
 export default {
-  // Gets all books
+  // Getall saved books as JSON
   getBooks: function() {
     return axios.get("/api/books");
   },
@@ -13,8 +13,13 @@ export default {
   deleteBook: function(id) {
     return axios.delete("/api/books/" + id);
   },
-  // Saves a book to the database
+  // Saves a new book to the database
   saveBook: function(bookData) {
     return axios.post("/api/books", bookData);
+  },
+
+  //load your single HTML page in client/build/index.html
+  loadPage: function() {
+    return axios.get("*");
   }
 };
