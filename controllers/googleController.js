@@ -1,9 +1,9 @@
 const axios = require("axios");
-
-//const BASEURL = "https://www.googleapis.com/books/v1/volumes?q='title:";
+const db = require("../models");
 
 // Defining methods for the googleController
-
+// findAll searches the Google Books API and returns the entries
+//Return title, author, link, description, and image
 module.exports = {
   bookQuery: function(req, res) {
     console.log(req.query);
