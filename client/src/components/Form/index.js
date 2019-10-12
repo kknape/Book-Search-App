@@ -13,7 +13,7 @@ function Form({ q, handleInputChange, handleFormSubmit }) {
           className="form-control heading-subtitle"
           id="Title"
           type="text"
-          value="{q}"
+          value={q}
           placeholder="Enter a book title..."
           name="q"
           onChange={handleInputChange}

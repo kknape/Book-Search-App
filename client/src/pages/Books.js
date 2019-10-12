@@ -9,6 +9,7 @@ import { Col, Row, Container } from "../components/Grid";
 // eslint-disable-next-line
 import { List, ListItem } from "../components/List";
 import Form from "../components/Form/index";
+import Book from "../components/Book/index";
 
 class Books extends Component {
   state = {
@@ -29,10 +30,10 @@ class Books extends Component {
     });
   };
 
-  loadBooks = () => {
+  getBooks = () => {
     API.getBooks(this.state.q)
       .then(res => this.setState({ books: res.data }))
-      .catch(err => console.log(err));
+      .catch(err => console.log(err + "There is an error"));
 
     this.setState({
       books: [],
@@ -60,9 +61,30 @@ class Books extends Component {
             />
           </Col>
         </Row>
+
         <Row>
           <Col size="md-12">
             <h1 className="text-center">Results</h1>
+            {this.state.books.length ? (
+              <List>
+                {this.state.books.map(book => (
+                  <Book
+                    key={book.id}
+                    title={book.items.volumeInfo.title}
+                    link={book.items.volumeInfo.infoLink}
+                    authors={book.items.volumeInfo.authors.join(", ")}
+                    description={book.items.description}
+                    image={book.items.imageLink.thumbnail}
+                  />
+                ))}
+              </List>
+            ) : (
+              <div className="mockup-content">
+                <h2 className="heading-title text-center">
+                  {this.state.message}
+                </h2>
+              </div>
+            )}
           </Col>
         </Row>
       </Container>
