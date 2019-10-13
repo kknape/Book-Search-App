@@ -8,7 +8,7 @@ module.exports = {
   bookQuery: function(req, res) {
     console.log(req.query);
     axios
-      .get("https://www.googleapis.com/books/v1/volumes?q=" + req.query.q)
+      .get("https://www.googleapis.com/books/v1/volumes?" + req.query.q)
       .then(response => {
         console.log(response.data);
         res.json(response.data);

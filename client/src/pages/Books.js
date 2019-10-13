@@ -6,10 +6,9 @@ import API from "../utils/API";
 // eslint-disable-next-line
 import DeleteBtn from "../components/DeleteBtn";
 import { Col, Row, Container } from "../components/Grid";
-// eslint-disable-next-line
 import { List, ListItem } from "../components/List";
-import Form from "../components/Form/index";
-import Book from "../components/Book/index";
+import Form from "../components/Form";
+import Book from "../components/Book";
 
 class Books extends Component {
   state = {
@@ -18,10 +17,9 @@ class Books extends Component {
     message: "Search for books..."
   };
 
-  /*
   componentDidMount() {
     this.loadBooks();
-  }*/
+  }
 
   handleInputChange = event => {
     const { name, value } = event.target;
@@ -30,7 +28,7 @@ class Books extends Component {
     });
   };
 
-  getBooks = () => {
+  loadBooks = () => {
     API.getBooks(this.state.q)
       .then(res => this.setState({ books: res.data }))
       .catch(err => console.log(err + "There is an error"));
@@ -43,7 +41,9 @@ class Books extends Component {
 
   handleFormSubmit = event => {
     event.preventDefault();
-    this.getBooks();
+    this.loadBooks();
+
+    console.log("TEST-NEW");
   };
 
   render() {
@@ -70,11 +70,11 @@ class Books extends Component {
                 {this.state.books.map(book => (
                   <Book
                     key={book.id}
-                    title={book.items.volumeInfo.title}
-                    link={book.items.volumeInfo.infoLink}
-                    authors={book.items.volumeInfo.authors.join(", ")}
-                    description={book.items.description}
-                    image={book.items.imageLink.thumbnail}
+                    title={book.volumeInfo.title}
+                    link={book.volumeInfo.infoLink}
+                    authors={book.volumeInfo.authors.join(", ")}
+                    description={book.VolumeInfo.description}
+                    image={book.VolumeInfo.imageLink.thumbnail}
                   />
                 ))}
               </List>

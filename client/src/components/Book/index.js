@@ -1,7 +1,9 @@
 import React from "react";
 import { ListItem } from "../List";
+import "./style.css";
+//import "./DeleteBtn";
 
-const Book = ({ title, author, description, image, link }) => {
+const Book = ({ title, authors, description, image, link }) => {
   const truncateText = (str, length, ending) => {
     if (str) {
       if (length == null) {
@@ -20,9 +22,38 @@ const Book = ({ title, author, description, image, link }) => {
   };
 
   const truncateDescription = truncateText(description, 255, "...");
-  console.log("TEST1");
-  return <ListItem>{console.log("TEST2")}</ListItem>;
-  console.log("TEST3");
+
+  return (
+    <ListItem>
+      <div className="media-snippet">
+        <article className="media">
+          <figure className="media-left">
+            <p>
+              <img className="image is-128xauto" src={image} alt={title} />
+            </p>
+          </figure>
+          <div className="media-content">
+            <h3 className="heading-title">{title}</h3>
+            <p className="heading-subtitle">by {authors} (Author)</p>
+            <p className="p-article">{truncateDescription}</p>
+            <div className="d-flex flex-row bd-highlight mb-3">
+              <div className="p-2 bd-highlight">
+                <a
+                  href={link}
+                  className="btn view-button heading-subtitle ml-2"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View
+                </a>
+              </div>
+              <div className="p-2 bd-highlight">{/*<DeleteBtn />*/}</div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </ListItem>
+  );
 };
 
 export default Book;
