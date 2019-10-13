@@ -5,27 +5,23 @@ import React from "react";
 function Form({ q, handleInputChange, handleFormSubmit }) {
   return (
     <form className="form-inline" role="form">
-      <div className="form-group mx-sm-3 mb-2">
+      <div className="form-group">
         <label htmlFor="Title" className="sr-only">
           Search Book Title
         </label>
         <input
-          className="form-control heading-subtitle"
+          className="form-control"
           id="Title"
           type="text"
           value={q}
-          placeholder="Enter a book title..."
-          name="q"
+          placeholder="Enter a keyword..."
+          keyWord="q"
           onChange={handleInputChange}
           size="62"
           required
         />
       </div>
-      <button
-        onClick={handleFormSubmit}
-        type="submit"
-        className="btn btn-lg heading-subtitle"
-      >
+      <button onClick={handleFormSubmit} type="submit" className="btn btn-lg">
         Search
       </button>
     </form>

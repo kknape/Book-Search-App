@@ -22,9 +22,9 @@ class Books extends Component {
   }
 
   handleInputChange = event => {
-    const { name, value } = event.target;
+    const { keyWord, value } = event.target;
     this.setState({
-      [name]: value
+      [keyWord]: value
     });
   };
 
@@ -69,12 +69,12 @@ class Books extends Component {
               <List>
                 {this.state.books.map(book => (
                   <Book
-                    key={book.id}
-                    title={book.volumeInfo.title}
-                    link={book.volumeInfo.infoLink}
-                    authors={book.volumeInfo.authors.join(", ")}
-                    description={book.VolumeInfo.description}
-                    image={book.VolumeInfo.imageLink.thumbnail}
+                    key={book.items.volumeInfo.id}
+                    title={book.items.volumeInfo.title}
+                    link={book.items.volumeInfo.infoLink}
+                    authors={book.items.volumeInfo.authors.join(", ")}
+                    description={book.items.volumeInfo.description}
+                    image={book.items.volumeInfo.imageLink.thumbnail}
                   />
                 ))}
               </List>
