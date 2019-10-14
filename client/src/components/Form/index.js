@@ -15,7 +15,7 @@ function Form({ q, handleInputChange, handleFormSubmit }) {
           type="text"
           value={q}
           placeholder="Enter a keyword..."
-          keyWord="q"
+          name="q"
           onChange={handleInputChange}
           size="62"
           required

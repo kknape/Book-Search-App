@@ -17,22 +17,34 @@ class Books extends Component {
     message: "Search for books..."
   };
 
-  componentDidMount() {
-    this.loadBooks();
-  }
+  componentDidMount() {}
 
   handleInputChange = event => {
-    const { keyWord, value } = event.target;
+    const { name, value } = event.target;
     this.setState({
-      [keyWord]: value
+      [name]: value
     });
   };
 
   loadBooks = () => {
     API.getBooks(this.state.q)
-      .then(res => this.setState({ books: res.data }))
-      .catch(err => console.log(err + "There is an error"));
+      .then(res => {
+        if (res && res.data.length > 0) {
+          //simple validation before setting state
+          this.setState({ books: res.data });
+        } else {
+          // if backend doesn't respond with appropriate data then reset UI.
+          this.setDefaultState();
+        }
+      })
+      .catch(err => {
+        console.log(err + "-There is an error.");
+        this.setDefaultState();
+      });
+  };
 
+  //function to reset state when needed
+  setDefaultState = () => {
     this.setState({
       books: [],
       message: "No results."
@@ -69,12 +81,12 @@ class Books extends Component {
               <List>
                 {this.state.books.map(book => (
                   <Book
-                    key={book.items.volumeInfo.id}
-                    title={book.items.volumeInfo.title}
-                    link={book.items.volumeInfo.infoLink}
-                    authors={book.items.volumeInfo.authors.join(", ")}
-                    description={book.items.volumeInfo.description}
-                    image={book.items.volumeInfo.imageLink.thumbnail}
+                    key={book.id}
+                    title={book.title}
+                    link={book.infoLink}
+                    authors={book.authors}
+                    description={book.description}
+                    image={book.thumbnail}
                   />
                 ))}
               </List>
