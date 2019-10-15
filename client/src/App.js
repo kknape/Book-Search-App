@@ -8,11 +8,10 @@ function App() {
   return (
     <div>
       <Nav />
-      <Books />
       <Switch>
         <Route path="/Books" component={Books} />
         <Route path="/Saved" component={Saved} />
-        <Redirect from="/" exact to="/search" />
+        <Redirect from="*" exact to="/Books" />
       </Switch>
     </div>
   );
