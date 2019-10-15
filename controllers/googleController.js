@@ -15,14 +15,15 @@ module.exports = {
         // id, title, infoLink, authors, description, and thumbnail
         const results = response.data.items
           .filter(book => {
-            return;
-            book.id &&
+            return (
+              book.id &&
               book.volumeInfo.title &&
               book.volumeInfo.infoLink &&
               book.volumeInfo.authors &&
               book.volumeInfo.description &&
               book.volumeInfo.imageLinks &&
-              book.volumeInfo.imageLinks.thumbnail;
+              book.volumeInfo.imageLinks.thumbnail
+            );
           })
           .map(book => {
             // map and send back to client only the
