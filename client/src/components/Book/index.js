@@ -1,7 +1,7 @@
 import React from "react";
 import { ListItem } from "../List";
 import "./style.css";
-//import "./DeleteBtn";
+import SaveBtn from "../SaveBtn";
 
 const Book = ({ title, authors, description, image, link }) => {
   const truncateText = (str, length, ending) => {
@@ -40,14 +40,16 @@ const Book = ({ title, authors, description, image, link }) => {
               <div className="p-2 bd-highlight">
                 <a
                   href={link}
-                  className="btn view-button heading-subtitle ml-2"
+                  className="btn view-button"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   View
                 </a>
               </div>
-              <div className="p-2 bd-highlight">{/*<DeleteBtn />*/}</div>
+              <div className="p-2 bd-highlight">
+                <SaveBtn />
+              </div>
             </div>
           </div>
         </article>

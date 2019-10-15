@@ -6,20 +6,32 @@ import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
+import Book from "../components/Book/index";
 
-class Books extends Component {
+class Saved extends Component {
   state = {
     books: []
   };
 
   componentDidMount() {
-    this.loadBooks();
+    this.getSavedBooks();
   }
 
-  loadBooks = () => {
-    API.getBooks()
+  getSavedBooks = () => {
+    API.getSavedBooks()
       .then(res => this.setState({ books: res.data }))
       .catch(err => console.log(err));
+  };
+
+  handleBookDelete = async id => {
+    const currentBooks = this.state.books;
+    try {
+      await API.deleteBook(id).then(res => this.getSavedBooks());
+    } catch (err) {
+      if (err.response && err.response.status === 404)
+        console.log(err + "-There is an error.");
+      this.setState({ books: currentBooks });
+    }
   };
 
   render() {
@@ -53,4 +65,4 @@ class Books extends Component {
   }
 }
 
-export default Books;
+export default Saved;

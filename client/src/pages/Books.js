@@ -3,12 +3,11 @@
 import React, { Component } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
-// eslint-disable-next-line
-import DeleteBtn from "../components/DeleteBtn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
 import Form from "../components/Form";
 import Book from "../components/Book";
+import SaveBtn from "../components/SaveBtn";
 
 class Books extends Component {
   state = {
@@ -54,8 +53,6 @@ class Books extends Component {
   handleFormSubmit = event => {
     event.preventDefault();
     this.loadBooks();
-
-    console.log("TEST-NEW");
   };
 
   render() {
@@ -89,9 +86,10 @@ class Books extends Component {
                     image={book.thumbnail}
                   />
                 ))}
+                <SaveBtn />
               </List>
             ) : (
-              <div className="mockup-content">
+              <div>
                 <h2 className="heading-title text-center">
                   {this.state.message}
                 </h2>
