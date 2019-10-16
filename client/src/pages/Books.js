@@ -1,6 +1,6 @@
 //This page will have Search and display results
 
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import { Col, Row, Container } from "../components/Grid";
@@ -46,13 +46,30 @@ class Books extends Component {
   setDefaultState = () => {
     this.setState({
       books: [],
+      savedBooks: [],
       message: "No results."
     });
   };
 
+  //handles search form input
   handleFormSubmit = event => {
     event.preventDefault();
     this.loadBooks();
+  };
+
+  //handles save button
+  handleSavedBook = id => {
+    const book = this.state.books.find(book => book.id === id);
+    console.log(book);
+
+    API.saveBook({
+      googleId: book.id,
+      title: book.title,
+      author: book.authors,
+      image: book.thumbnail,
+      description: book.description,
+      link: book.infoLink
+    }).then(() => API.getBooks());
   };
 
   render() {
@@ -76,17 +93,25 @@ class Books extends Component {
             <h1 className="text-center">Results</h1>
             {this.state.books.length ? (
               <List>
-                {this.state.books.map(book => (
-                  <Book
-                    key={book.id}
-                    title={book.title}
-                    link={book.infoLink}
-                    authors={book.authors}
-                    description={book.description}
-                    image={book.thumbnail}
-                  />
-                ))}
-                <SaveBtn />
+                {this.state.books.map(book => {
+                  return (
+                    <Fragment key={book.id}>
+                      <Book
+                        title={book.title}
+                        link={book.infoLink}
+                        authors={book.authors}
+                        description={book.description}
+                        image={book.thumbnail}
+                      />
+                      <div className="p-2 bd-highlight">
+                        <SaveBtn
+                          onClick={() => this.handleSavedBook(book.id)}
+                          className="btn save-button"
+                        />
+                      </div>
+                    </Fragment>
+                  );
+                })}
               </List>
             ) : (
               <div>

@@ -47,9 +47,6 @@ const Book = ({ title, authors, description, image, link }) => {
                   View
                 </a>
               </div>
-              <div className="p-2 bd-highlight">
-                <SaveBtn />
-              </div>
             </div>
           </div>
         </article>
