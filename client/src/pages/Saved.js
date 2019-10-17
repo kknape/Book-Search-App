@@ -51,7 +51,22 @@ class Saved extends Component {
                         {book.title} by {book.author}
                       </strong>
                     </a>
-                    <DeleteBtn />
+                    {book.infoLink}
+                    {book.description}
+                    {book.thumbnail}
+                    <p>
+                      <img
+                        className="image is-128xauto"
+                        src={book.thumbnail}
+                        alt={book.title}
+                      />
+                    </p>
+
+                    <div className="p-2 bd-highlight">
+                      <DeleteBtn
+                        onClick={() => this.handleBookDelete(book._id)}
+                      />
+                    </div>
                   </ListItem>
                 ))}
               </List>
