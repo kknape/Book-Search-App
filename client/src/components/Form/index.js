@@ -1,4 +1,5 @@
 import React from "react";
+import "./style.css";
 
 // This file exports the Search field component
 
@@ -21,7 +22,11 @@ function Form({ q, handleInputChange, handleFormSubmit }) {
           required
         />
       </div>
-      <button onClick={handleFormSubmit} type="submit" className="btn btn-lg">
+      <button
+        onClick={handleFormSubmit}
+        type="submit"
+        className="btn btn-lg search-btn"
+      >
         Search
       </button>
     </form>

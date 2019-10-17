@@ -1,9 +1,9 @@
 import React from "react";
 import { ListItem } from "../List";
 import "./style.css";
-import SaveBtn from "../SaveBtn";
 
 const Book = ({ title, authors, description, image, link }) => {
+  console.log(Book);
   const truncateText = (str, length, ending) => {
     if (str) {
       if (length == null) {
@@ -40,7 +40,7 @@ const Book = ({ title, authors, description, image, link }) => {
               <div className="p-2 bd-highlight">
                 <a
                   href={link}
-                  className="btn view-button"
+                  className="view-btn"
                   target="_blank"
                   rel="noopener noreferrer"
                 >

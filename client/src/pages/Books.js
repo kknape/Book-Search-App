@@ -106,7 +106,7 @@ class Books extends Component {
                       <div className="p-2 bd-highlight">
                         <SaveBtn
                           onClick={() => this.handleSavedBook(book.id)}
-                          className="btn save-button"
+                          className="save-btn"
                         />
                       </div>
                     </Fragment>

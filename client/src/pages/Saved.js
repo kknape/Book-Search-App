@@ -1,12 +1,12 @@
 //This page will hold saved articles
 
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import Jumbotron from "../components/Jumbotron";
 import API from "../utils/API";
 import DeleteBtn from "../components/DeleteBtn";
 import { Col, Row, Container } from "../components/Grid";
 import { List, ListItem } from "../components/List";
-import Book from "../components/Book/index";
+import "../components/Book/style.css";
 
 class Saved extends Component {
   state = {
@@ -42,37 +42,68 @@ class Saved extends Component {
             <Jumbotron>
               <h1>My Saved Books</h1>
             </Jumbotron>
-            {this.state.books.length ? (
-              <List>
-                {this.state.books.map(book => (
-                  <ListItem key={book._id}>
-                    <a href={"/books/" + book._id}>
-                      <strong>
-                        {book.title} by {book.author}
-                      </strong>
-                    </a>
-                    {book.infoLink}
-                    {book.description}
-                    {book.thumbnail}
-                    <p>
-                      <img
-                        className="image is-128xauto"
-                        src={book.thumbnail}
-                        alt={book.title}
-                      />
-                    </p>
 
-                    <div className="p-2 bd-highlight">
-                      <DeleteBtn
-                        onClick={() => this.handleBookDelete(book._id)}
-                      />
-                    </div>
-                  </ListItem>
-                ))}
-              </List>
-            ) : (
-              <h3>No Results to Display</h3>
-            )}
+            <Row>
+              <Col size="md-12">
+                {this.state.books.length ? (
+                  <List>
+                    {this.state.books.map(book => {
+                      return (
+                        <Fragment key={book.id}>
+                          <ListItem>
+                            <div className="media-snippet">
+                              <article className="media">
+                                <figure className="media-left">
+                                  <p>
+                                    <img
+                                      className="image is-128xauto"
+                                      src={book.image}
+                                      alt={book.title}
+                                    />
+                                  </p>
+                                </figure>
+                                <div className="media-content">
+                                  <h3 className="heading-title">
+                                    {book.title}
+                                  </h3>
+                                  <p className="heading-subtitle">
+                                    by {book.authors} (Author)
+                                  </p>
+                                  <p className="p-article">
+                                    {book.description}
+                                  </p>
+                                  {/*link to view the book on google*/}
+                                  <div className="d-flex flex-row bd-highlight mb-3">
+                                    <div className="p-2 bd-highlight">
+                                      <a
+                                        href={book.link}
+                                        className="view-btn"
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        View
+                                      </a>
+                                      {/*delete book from your saved list*/}
+                                      <DeleteBtn
+                                        onClick={() =>
+                                          this.handleBookDelete(book._id)
+                                        }
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              </article>
+                            </div>
+                          </ListItem>
+                        </Fragment>
+                      );
+                    })}
+                  </List>
+                ) : (
+                  <h3>No Results to Display</h3>
+                )}
+              </Col>
+            </Row>
           </Col>
         </Row>
       </Container>

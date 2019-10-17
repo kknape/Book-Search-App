@@ -73,3 +73,14 @@ p {
   flex-shrink: 0;
   justify-content: center;
 }
+
+.view-btn {
+  border: 1px solid darkcyan;
+  border-radius: 3px;
+  padding: 3px 5px 3px 5px;
+  width: 30%;
+  font-size: 16pt;
+}
+.view-btn:hover {
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.24), 0 5px 7px 0 rgba(0, 0, 0, 0.19);
+}
