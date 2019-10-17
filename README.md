@@ -1,29 +1,24 @@
-# Create React Express App
+# Google Book Search
 
-## About This Boilerplate
+## What is the Google Search Book App?
+This app uses React components, with helper/util functions, as well as utilizing React lifecycle methods to query and display books based on user searches. Users can save books to review or purchase later.
 
-This setup allows for a Node/Express/React app which can be easily deployed to Heroku.
+## How the app was created
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
-
-## Starting the app locally
-
-Start by installing front and backend dependencies. While in this directory, run the following command:
-
-```
-npm install
-```
-
-This should install node modules within the server and the client folder.
-
-After both installations complete, run the following command in your terminal:
-
-```
-npm start
-```
-
-Your app should now be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
-
-## Deployment (Heroku)
-
-To deploy, simply add and commit your changes, and push to Heroku. As is, the NPM scripts should take care of the rest.
+This project utilizes
+ - React
+ - Node
+ - Express
+ - Axios
+ - Mongoose
+ - MongoDB
+ - Deployed on Heroku: https://gsearchbooks.herokuapp.com/Books
+ 
+ 
+## When the project is complete, the user will be able to...
+ - A users can search for books using Google's Book api. 
+ - Users enter a keyword and see matching books.
+ - ![User Selects Prompt](https://github.com/kknape/Book-Search-App/blob/master/images/screenshots_Search.png)
+ - Users can save books to their Saved Books list.
+ - Users can view their saved list and delete items from that list.
+- ![User Selects Prompt](https://github.com/kknape/Book-Search-App/blob/master/images/screenshot_Saved.png)
