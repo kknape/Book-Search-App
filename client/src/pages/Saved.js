@@ -67,7 +67,7 @@ class Saved extends Component {
                                     {book.title}
                                   </h3>
                                   <p className="heading-subtitle">
-                                    by {book.authors} (Author)
+                                    by {book.author} (Author)
                                   </p>
                                   <p className="p-article">
                                     {book.description}
